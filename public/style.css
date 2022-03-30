@@ -47,6 +47,9 @@ body, input, textarea, button {
     border-radius: 8px;
 }
 .todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     float: left;
     width: 100%;
     padding: 10px;
@@ -59,6 +62,14 @@ body, input, textarea, button {
 }
 .todo-item:hover {
     background-color: lightgrey;
+}
+.delete {
+    padding: 8px 16px;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 8px;
+    color: white;
+    background-color: red;
 }
 .error,
 .success {
@@ -75,4 +86,12 @@ body, input, textarea, button {
 .success {
     color: blue;
     border: 1px solid blue;
+}
+.done {
+    text-decoration: line-through;
+    color: grey;
+}
+.undone {
+    text-decoration: none;
+    color: black;
 }

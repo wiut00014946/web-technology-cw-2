@@ -7,6 +7,9 @@ block header
     if success
         div.success Task added
 
+    if deleted
+        div.success Deleted
+
     form.form(action="/add" method="POST")
         input.input(type="text" name="todo" placeholder="Add the To Do Task here")
         button.btn Add
@@ -14,6 +17,11 @@ block header
     div.todo-list
         if todos.length
             each todo in todos
-                div.todo-item #{ todo.description }
+                div.todo-item
+                    if todo.done 
+                        a.done(href=`/${ todo.id }/update`) #{ todo.description }
+                    else
+                        a.undone(href=`/${ todo.id }/update`) #{ todo.description }
+                    a.delete(href=`/${ todo.id }/delete`) Delete
         else
             div.todo-item No any todo available
