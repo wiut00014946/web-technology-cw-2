@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body, input, textarea, button {
+    font-family: 'Ubuntu', sans-serif;
+}
+.container {
+    max-width: 1000px;
+    margin: 50px auto;
+}
+.logo {
+    margin: 20px;
+    font-size: 32px;
+    text-align: center;
+}
+.form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.input {
+    display: inline-block;
+    width: 80%;
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: 1px solid grey;
+}
+.btn {
+    display: inline-block;
+    width: 18%;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    background-color: grey;
+}
+.todo-list {
+    float: left;
+    width: 100%;
+    margin: 20px 0;
+    padding: 4px;
+    border: 1px solid grey;
+    border-radius: 8px;
+}
+.todo-item {
+    float: left;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    border-bottom: 1px dotted grey;
+}
+.todo-item:last-child {
+    border-bottom: none;
+}
+.todo-item:hover {
+    background-color: lightgrey;
+}
+.error,
+.success {
+    float: left;
+    width: 100%;
+    margin: 0 0 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px;
+    color: red;
+    border: 1px solid red;
+}
+.success {
+    color: blue;
+    border: 1px solid blue;
+}

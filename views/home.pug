@@ -1,0 +1,19 @@
+extends layout.pug
+
+block header
+    if error
+        div.error Please fill the input
+
+    if success
+        div.success Task added
+
+    form.form(action="/add" method="POST")
+        input.input(type="text" name="todo" placeholder="Add the To Do Task here")
+        button.btn Add
+
+    div.todo-list
+        if todos.length
+            each todo in todos
+                div.todo-item #{ todo.description }
+        else
+            div.todo-item No any todo available
