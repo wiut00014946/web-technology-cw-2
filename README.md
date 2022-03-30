@@ -23,3 +23,6 @@ node app
 
 #### Link to github repo
 https://github.com/wiut00014946/web-technology-cw-2.git
+
+#### Link to application on Glitch
+https://maize-noiseless-lantern.glitch.me
