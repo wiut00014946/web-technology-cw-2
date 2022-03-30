@@ -5,7 +5,7 @@ This app allows users to track the to dos
 #### Instructions
 1.Donwload the source code
 ```bash
-git clone [url to the github repo]
+git clone https://github.com/wiut00014946/web-technology-cw-2.git
 ```
 or just download the *.zip file
 2.Install dependencies
@@ -22,4 +22,4 @@ node app
 - pug
 
 #### Link to github repo
-[url to the github repo]
+https://github.com/wiut00014946/web-technology-cw-2.git
