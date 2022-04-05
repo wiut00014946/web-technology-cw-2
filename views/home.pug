@@ -7,6 +7,9 @@ block header
     if success
         div.success Student record created
 
+    if updated
+        div.success Student record updated
+
     if deleted
         div.success Student record deleted
 
@@ -32,25 +35,18 @@ block header
                 th Student Name
                 th Student Surname
                 th Student Course
-                th Delete Record
+                th Update / Delete
             each student in students
                 tr.student
-                    if student.done 
-                        td
-                            a.done(href=`/${ student.id }/update`) #{ student.id }
-                        td #{ student.name }
-                        td #{ student.surname }
-                        td #{ student.course }
-                    else
-                        td
-                            a.undone(href=`/${ student.id }/update`) #{ student.id }
-                        td #{ student.name }
-                        td #{ student.surname }
-                        td #{ student.course }
+                    td #{ student.id }
+                    td #{ student.name }
+                    td #{ student.surname }
+                    td #{ student.course }
                     td
+                        a.update(href=`/${ student.id }/update`) Update
                         a.delete(href=`/${ student.id }/delete`) Delete
         else
-            tr.student
+            tr.student-empty
                 td No any student records available
     
     div.footer

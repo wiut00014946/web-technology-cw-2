@@ -15,6 +15,9 @@ body, input, select, button {
     margin: 20px;
     font-size: 30px;
     text-align: center;
+}
+.logo a {
+    text-decoration: none;
     color: rgb(0, 0, 102);
 }
 .form {
@@ -91,17 +94,21 @@ body, input, select, button {
     color: rgb(0, 0, 102);
     background-color: rgb(204, 204, 235);
 }
-.student {
+.student,
+.student-empty {
     display: flex;
     align-items: center;
     justify-content: space-between;
     float: left;
     width: 100%;
     margin: 3px 0;
-    padding: 10px;
+    padding: 10px 0;
     font-size: 18px;
     border-radius: 8px;
     background-color: white;
+}
+.student-empty {
+    padding: 10px 12px;
 }
 .student:hover {
     transform: scale(1.01, 1);
@@ -113,27 +120,32 @@ body, input, select, button {
 }
 .student th:first-child,
 .student td:first-child {
+    padding: 0 0 0 12px;
     text-align: left;
 }
-.student th:last-child,
+.student th:nth-child(5),
+.student th:last-child {
+    text-align: right;
+    padding: 0 12px 0 0;
+}
+.student td:nth-child(5),
 .student td:last-child {
     text-align: right;
 }
-.delete {
+.delete,
+.update {
+    margin: 0 8px 0 0;
     padding: 8px 16px;
     font-size: 16px;
     text-decoration: none;
     border-radius: 8px;
     color: rgb(255, 255, 255);
+}
+.delete {
     background-color: rgb(255, 0, 0);
 }
-.done {
-    text-decoration: line-through;
-    color: grey;
-}
-.undone {
-    text-decoration: none;
-    color: rgb(0, 0, 0);
+.update {
+    background-color: rgb(0, 204, 0);
 }
 .footer {
     float: left;

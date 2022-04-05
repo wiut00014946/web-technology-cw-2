@@ -1,0 +1,19 @@
+extends layout.pug
+
+block header
+    if error
+        div.error Please fill student name and surname fields
+
+    form.form(action=`/${ student.id }/update` method='POST')
+        fieldset
+            legend Update student record
+            input(type='text' name='studentName' value=`${ student.name }` placeholder='Student name')
+            input(type='text' name='studentSurname' value=`${ student.surname }` placeholder='Student surname')
+            select(name='studentCourse')
+                option(value=`${ student.course }` selected hidden) #{ student.course }
+                option(value='Business Management') BA (Hons) Business Management
+                option(value='Commercial Law') BA (Hons) Commercial Law
+                option(value='Finance') BSc (Hons) Finance
+                option(value='Economics With Finance') BSc (Hons) Economics With Finance
+                option(value='Business Information Systems') BSc (Hons) Business Information Systems
+            button Update student record
