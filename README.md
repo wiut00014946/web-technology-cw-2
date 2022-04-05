@@ -1,6 +1,10 @@
-# TO DO APPLICATION
+# STUDENTS DATABASE APPLICATION
 
-This app allows users to track the to dos
+This application allows users following actions:
+1. Display existing student records
+2. Create new student records
+3. Update existing student records
+4. Delete existing student records
 
 #### Instructions
 1.Donwload the source code

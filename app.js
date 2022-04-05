@@ -1,59 +1,66 @@
-// third party libraries
+// include 'express' web application framework
 const express = require('express')
 const app = express()
 
-// node libraries
+// include the file system module
 const fs = require('fs')
+
+// define PORT number
 const PORT = 8000
 
+// using 'pug' template engine
 app.set('view engine', 'pug')
+
 app.use('/static', express.static('public'))
+
 app.use(express.urlencoded({ extended: false }))
 
 app.get('/', (req, res) => {
-    fs.readFile('./data/todos.json', (err, data) => {
+    fs.readFile('./database/students.json', (err, data) => {
         if (err) throw err
 
-        const todos = JSON.parse(data)
+        const students = JSON.parse(data)
 
-        res.render('home', { todos: todos })
+        res.render('home', { students: students })
     })
 })
 
 app.post('/add', (req, res) => {
     const formData = req.body
     
-    if (formData.todo.trim() == '') {
-        fs.readFile('./data/todos.json', (err, data) => {
+    if (formData.studentName.trim() == '' || formData.studentSurname.trim() == '') {
+        fs.readFile('./database/students.json', (err, data) => {
             if (err) throw err
 
-            const todos = JSON.parse(data)
+            const students = JSON.parse(data)
 
-            res.render('home', { error: true, todos: todos })
+            res.render('home', { error: true, students: students })
         })
     } else {
-        fs.readFile('./data/todos.json', (err, data) => {
+        fs.readFile('./database/students.json', (err, data) => {
             if (err) throw err
             
-            const todos = JSON.parse(data)
+            const students = JSON.parse(data)
             
-            const todo = {
+            const student = {
                 id: id(),
-                description: formData.todo,
+                name: formData.studentName,
+                surname: formData.studentSurname,
+                course: formData.studentCourse,
                 done: false
             }
             
-            todos.push(todo)
+            students.push(student)
             
-            fs.writeFile('./data/todos.json', JSON.stringify(todos), (err) => {
+            fs.writeFile('./database/students.json', JSON.stringify(students), (err) => {
                 if (err) throw err
 
-                fs.readFile('./data/todos.json', (err, data) => {
+                fs.readFile('./database/students.json', (err, data) => {
                     if (err) throw err
 
-                    const todos = JSON.parse(data)
+                    const students = JSON.parse(data)
 
-                    res.render('home', { success: true, todos: todos })
+                    res.render('home', { success: true, students: students })
                 })
             })
         })
@@ -63,17 +70,17 @@ app.post('/add', (req, res) => {
 app.get('/:id/delete', (req, res) => {
     const id = req.params.id
 
-    fs.readFile('./data/todos.json', (err, data) => {
+    fs.readFile('./database/students.json', (err, data) => {
         if (err) throw err
 
-        const todos = JSON.parse(data)
+        const students = JSON.parse(data)
 
-        const filteredTodos = todos.filter(todo => todo.id != id)
+        const filteredStudents = students.filter(student => student.id != id)
 
-        fs.writeFile('./data/todos.json', JSON.stringify(filteredTodos), (err) => {
+        fs.writeFile('./database/students.json', JSON.stringify(filteredStudents), (err) => {
             if (err) throw err
 
-            res.render('home', { todos: filteredTodos, deleted: true })
+            res.render('home', { students: filteredStudents, deleted: true })
         })
     })
 })
@@ -81,23 +88,23 @@ app.get('/:id/delete', (req, res) => {
 app.get('/:id/update', (req, res) => {
     const id = req.params.id
 
-    fs.readFile('./data/todos.json', (err, data) => {
+    fs.readFile('./database/students.json', (err, data) => {
         if (err) throw err
 
-        const todos = JSON.parse(data)
-        const todo = todos.filter(todo => todo.id == id)[0]
+        const students = JSON.parse(data)
+        const student = students.filter(student => student.id == id)[0]
         
-        const todoIdx = todos.indexOf(todo)
-        const splicedTodo = todos.splice(todoIdx, 1)[0]
+        const studentIdx = students.indexOf(student)
+        const splicedStudent = students.splice(studentIdx, 1)[0]
         
-        splicedTodo.done = true
+        splicedStudent.done = true
         
-        todos.push(splicedTodo)
+        students.push(splicedStudent)
 
-        fs.writeFile('./data/todos.json', JSON.stringify(todos), (err) => {
+        fs.writeFile('./database/students.json', JSON.stringify(students), (err) => {
             if (err) throw err
 
-            res.render('home', { todos: todos })
+            res.render('home', { students: students })
         })
     })
 })
@@ -105,9 +112,9 @@ app.get('/:id/update', (req, res) => {
 app.listen(PORT, (err) => {
     if (err) throw err
 
-    console.log('This app is running on port' + PORT)
+    console.log('This application is running on port ' + PORT)
 })
 
 function id() {
-    return '_' + Math.random().toString(36).substr(2, 9);
+    return 'id_' + Math.random().toString(36).substr(2, 9);
 }

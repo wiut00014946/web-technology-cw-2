@@ -2,26 +2,58 @@ extends layout.pug
 
 block header
     if error
-        div.error Please fill the input
+        div.error Please fill student name and surname fields
 
     if success
-        div.success Task added
+        div.success Student record created
 
     if deleted
-        div.success Deleted
+        div.success Student record deleted
 
-    form.form(action="/add" method="POST")
-        input.input(type="text" name="todo" placeholder="Add the To Do Task here")
-        button.btn Add
+    form.form(action='/add' method='POST')
+        fieldset
+            legend Create student record
+            input(type='text' name='studentName' placeholder='Student name')
+            input(type='text' name='studentSurname' placeholder='Student surname')
+            select(name='studentCourse')
+                option(value='none' selected disabled hidden) Select a course
+                option(value='Business Management') BA (Hons) Business Management
+                option(value='Commercial Law') BA (Hons) Commercial Law
+                option(value='Finance') BSc (Hons) Finance
+                option(value='Economics With Finance') BSc (Hons) Economics With Finance
+                option(value='Business Information Systems') BSc (Hons) Business Information Systems
+            button Create student record
 
-    div.todo-list
-        if todos.length
-            each todo in todos
-                div.todo-item
-                    if todo.done 
-                        a.done(href=`/${ todo.id }/update`) #{ todo.description }
+    table.students
+        div.students-header Display student records
+        if students.length
+            tr.student
+                th Student ID
+                th Student Name
+                th Student Surname
+                th Student Course
+                th Delete Record
+            each student in students
+                tr.student
+                    if student.done 
+                        td
+                            a.done(href=`/${ student.id }/update`) #{ student.id }
+                        td #{ student.name }
+                        td #{ student.surname }
+                        td #{ student.course }
                     else
-                        a.undone(href=`/${ todo.id }/update`) #{ todo.description }
-                    a.delete(href=`/${ todo.id }/delete`) Delete
+                        td
+                            a.undone(href=`/${ student.id }/update`) #{ student.id }
+                        td #{ student.name }
+                        td #{ student.surname }
+                        td #{ student.course }
+                    td
+                        a.delete(href=`/${ student.id }/delete`) Delete
         else
-            div.todo-item No any todo available
+            tr.student
+                td No any student records available
+    
+    div.footer
+        h2 Student Database Application
+        p This web application was created to fulfill Web Technology module’s requirements and does not represent an actual company or service
+        p &copy;Copyright 2022
